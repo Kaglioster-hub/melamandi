@@ -1,27 +1,41 @@
 {
   "brand": "Melamandi",
-  "tagline": "Fresh fruit & veg baskets \u00b7 North Rome inside GRA",
+  "tagline": "Fresh fruit & veg baskets · North Rome inside GRA",
   "cta_order": "Order now",
+
   "how_title": "How it works",
   "how_1": "Pick your basket",
-  "how_2": "Ordering every day 6\u201310 pm",
-  "how_3": "Delivery tomorrow 10 am\u20132 pm (North Rome inside GRA)",
+  "how_2": "Ordering available daily between 6–10 pm",
+  "how_3": "Delivery next day between 10 am–2 pm (North Rome, inside the GRA)",
+
   "baskets_title": "Our baskets",
+
   "order_title": "Booking",
-  "order_desc": "Fill the form: delivery tomorrow {{window}} inside GRA (North Rome).",
+  "order_desc": "Fill out the form: delivery scheduled for {{window}} inside the GRA (North Rome).",
+  "order_success": "Your order has been received!",
+  "order_followup": "We will contact you shortly to confirm.",
   "name": "Name",
   "email": "Email",
-  "address": "Address (street + number + district)",
-  "zip": "ZIP",
+  "address": "Address (street, number, and district)",
+  "zip": "ZIP Code",
   "notes": "Notes",
   "send": "Send request",
-  "only_open": "Ordering window is 6\u201310 pm daily",
-  "footer_rights": "\u00a9 {{year}} Melamandi \u00b7 All rights reserved",
-  "out_closed_title": "\ud83c\udf19 Ordering closed",
+  "sending": "Sending…",
+
+  "zone_error": "At the moment we only deliver inside the GRA · North Rome (from Boccea to Nomentana).",
+
+  "only_open": "Ordering window is from 6–10 pm daily",
+
+  "footer_rights": "© {{year}} Melamandi · All rights reserved",
+
+  "out_closed_title": "🌙 Ordering closed",
   "out_closed_msg": "The cosmic gates open daily from 6 pm to 10 pm.",
   "out_reopen": "Reopens in {{h}}h {{m}}m",
+  "out_cta": "Leave your details for a reminder",
+
   "pay_stripe": "Pay with Stripe",
   "pay_paypal": "Pay with PayPal",
   "book_form": "Book with form",
+
   "variant": "Variant"
 }

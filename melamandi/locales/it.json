@@ -1,27 +1,41 @@
 {
   "brand": "Melamandi",
-  "tagline": "Cesti freschi di frutta e verdura \u00b7 Roma Nord entro il GRA",
+  "tagline": "Cesti freschi di frutta e verdura · Roma Nord entro il GRA",
   "cta_order": "Ordina ora",
+
   "how_title": "Come funziona",
   "how_1": "Scegli il tuo cesto",
-  "how_2": "Ordinazioni ogni giorno 18:00\u201322:00",
-  "how_3": "Consegna domani 10:00\u201314:00 (Roma Nord entro GRA)",
+  "how_2": "Ordinazioni ogni giorno 18:00–22:00",
+  "how_3": "Consegna domani 10:00–14:00 (Roma Nord entro GRA)",
+
   "baskets_title": "I nostri cesti",
+
   "order_title": "Prenotazione",
   "order_desc": "Compila il modulo: ti consegniamo domani {{window}} entro il GRA (Roma Nord).",
+  "order_success": "✅ Ordine ricevuto!",
+  "order_followup": "Ti ricontatteremo a breve per confermare.",
   "name": "Nome",
   "email": "Email",
   "address": "Indirizzo (via + civico + quartiere)",
   "zip": "CAP",
   "notes": "Note",
   "send": "Invia richiesta",
-  "only_open": "Gli ordini aprono ogni giorno 18:00\u201322:00",
-  "footer_rights": "\u00a9 {{year}} Melamandi \u00b7 Tutti i diritti riservati",
-  "out_closed_title": "\ud83c\udf19 Ordini chiusi",
+  "sending": "Invio…",
+
+  "zone_error": "Al momento consegniamo solo entro il GRA · Roma Nord (da Boccea a Nomentana).",
+
+  "only_open": "Gli ordini aprono ogni giorno dalle 18:00 alle 22:00",
+
+  "footer_rights": "© {{year}} Melamandi · Tutti i diritti riservati",
+
+  "out_closed_title": "🌙 Ordini chiusi",
   "out_closed_msg": "Le porte cosmiche si aprono ogni giorno dalle 18:00 alle 22:00.",
   "out_reopen": "Riapriamo tra {{h}}h {{m}}m",
+  "out_cta": "Lascia i tuoi dati per un promemoria",
+
   "pay_stripe": "Paga con Stripe",
   "pay_paypal": "Paga con PayPal",
   "book_form": "Prenota con modulo",
+
   "variant": "Variante"
 }
