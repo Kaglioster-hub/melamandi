@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme tokens */
+:root{
+  --bg:#0b0b0b;
+  --fg:#f6f7f7;
+  --card:#111214;
+  --border:rgba(255,255,255,.08);
+}
+
+.light {
+  --bg:#fafafa;
+  --fg:#0b0b0b;
+  --card:#ffffff;
+  --border:rgba(0,0,0,.08);
+}
+
+*{ box-sizing: border-box; }
+
+html, body{ height: 100%; }
+
+body{
+  @apply bg-[var(--bg)] text-[var(--fg)] antialiased selection:bg-brand.green/30 selection:text-[var(--bg)];
+  background-image: radial-gradient(1200px 400px at 10% 0%, rgba(139,92,246,.10), transparent),
+                    radial-gradient(1200px 400px at 90% 0%, rgba(245,158,11,.10), transparent);
+}
+
+.container{ @apply max-w-6xl mx-auto px-4; }
+.card{ @apply bg-[var(--card)] border border-[var(--border)] rounded-2xl shadow-soft; }
+
+.btn{ @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl border border-[var(--border)] transition outline-none; }
+.btn:focus-visible{ box-shadow: 0 0 0 3px rgba(34,197,94,.5); } /* focus contrast */
+.btn-primary{ @apply from-brand.green to-brand.orange bg-gradient-to-r text-[var(--bg)] hover:opacity-90; }
+.btn-ghost{ @apply hover:bg-white/5; }
+
+.badge{ @apply text-xs px-2.5 py-1 rounded-full border border-[var(--border)] bg-white/5; }
+
+label{ @apply text-sm; }
+
+input, select, textarea{
+  @apply w-full px-3.5 py-2.5 rounded-xl bg-black/80 text-white placeholder:text-white/50 border border-white/10 outline-none;
+}
+input:focus-visible, select:focus-visible, textarea:focus-visible{
+  @apply ring-2 ring-emerald-400 ring-offset-0;
+}
+.light input, .light select, .light textarea{
+  @apply bg-white text-black placeholder:text-black/40 border-black/10;
+}
+
+hr{ @apply border-[var(--border)]; }
