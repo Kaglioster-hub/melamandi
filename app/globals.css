@@ -32,7 +32,7 @@ body{
 
 .btn{ @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl border border-[var(--border)] transition outline-none; }
 .btn:focus-visible{ box-shadow: 0 0 0 3px rgba(34,197,94,.5); } /* focus contrast */
-.btn-primary{ @apply from-brand.green to-brand.orange bg-gradient-to-r text-[var(--bg)] hover:opacity-90; }
+.btn-primary{ @apply from-brand-green to-brand-orange bg-gradient-to-r text-[var(--bg)] hover:opacity-90; }
 .btn-ghost{ @apply hover:bg-white/5; }
 
 .badge{ @apply text-xs px-2.5 py-1 rounded-full border border-[var(--border)] bg-white/5; }
