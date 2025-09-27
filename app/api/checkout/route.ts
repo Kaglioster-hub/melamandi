@@ -39,7 +39,7 @@ export async function POST(req: Request){
         line_items.push({
           price_data: {
             currency: "eur",
-            product_data: { name: "Consegna" },
+            product_data: { name: "Consegna", description: undefined },
             unit_amount: Math.round(Number(delivery) * 100),
           },
           quantity: 1,
