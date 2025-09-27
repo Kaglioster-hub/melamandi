@@ -22,7 +22,7 @@
 html, body{ height: 100%; }
 
 body{
-  @apply bg-[var(--bg)] text-[var(--fg)] antialiased selection:bg-brand.green/30 selection:text-[var(--bg)];
+  @apply bg-[var(--bg)] text-[var(--fg)] antialiased selection:bg-brand-green/30 selection:text-[var(--bg)];
   background-image: radial-gradient(1200px 400px at 10% 0%, rgba(139,92,246,.10), transparent),
                     radial-gradient(1200px 400px at 90% 0%, rgba(245,158,11,.10), transparent);
 }
