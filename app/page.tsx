@@ -58,7 +58,7 @@ export default function Page(){
             <div className="card">
               <h3 className="text-lg font-semibold">Note</h3>
               <p className="opacity-70 text-sm mt-1">
-                Taglie: S (2,5kg)/M (5kg)/L (8kg) moltiplicano la quantità scelta. Consegna fissa €4.90. Seleziona 2 frutti (o Stagionale) e aggiungi al carrello.
+                Taglie: S (2,5kg)/M (5kg)/L (8kg) moltiplicano la quantità scelta. Consegna fissa €4,90 **solo nelle zone servite**. Seleziona 2 frutti (o Stagionale) e aggiungi al carrello.
               </p>
             </div>
             <div id="carrello"><CartCheckout/></div>
