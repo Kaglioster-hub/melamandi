@@ -26,7 +26,7 @@ export default function Page(){
             Cesti di frutta rivisitati. Consegna Roma Nord.
           </div>
           <h1 className="sr-only">MelaMandi</h1>
-          <p className="opacity-80 mt-3">Prezzi già scontati del 40%. Scegli 2 frutti o “Stagionale”.</p>
+          <p className="opacity-80 mt-3">Scegli tu due frutti o seleziona “Stagionale” per avere il tuo cesto.</p>
         </section>
 
         <CartProvider>
@@ -34,21 +34,21 @@ export default function Page(){
             <ProductCard
               name="Base"
               listPrice={26.1}
-              image="https://images.unsplash.com/photo-1576186726117-0f3f0a1a7f9a?q=80&w=1600&auto=format&fit=crop"
+              image="https://blog.naturlider.com/wp-content/uploads/2019/11/Productos-de-temporada-en-julio-para-tu-alimentaci%C3%B3n-1.jpg"
               description="Cesto essenziale: scegli 2 frutti a piacere o Stagionale."
               fruits={["Mele","Pere","Banane","Arance"]}
             />
             <ProductCard
               name="Esotico"
               listPrice={44.1}
-              image="https://images.unsplash.com/photo-1584267385494-9fdd9f6b3fd1?q=80&w=1600&auto=format&fit=crop"
+              image="https://blog.naturlider.com/wp-content/uploads/2019/11/Productos-de-temporada-en-julio-para-tu-alimentaci%C3%B3n-1.jpg"
               description="Cesto esotico: mango, ananas, papaya, kiwi (o Stagionale)."
               fruits={["Mango","Ananas","Papaya","Kiwi"]}
             />
             <ProductCard
               name="Deluxe"
               listPrice={62.1}
-              image="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1600&auto=format&fit=crop"
+              image="https://blog.naturlider.com/wp-content/uploads/2019/11/Productos-de-temporada-en-julio-para-tu-alimentaci%C3%B3n-1.jpg"
               description="Cesto completo: selezione premium, scegli 2 frutti o Stagionale."
               fruits={["Mele","Pere","Banane","Arance","Mango","Ananas","Papaya","Kiwi"]}
             />
@@ -58,7 +58,7 @@ export default function Page(){
             <div className="card">
               <h3 className="text-lg font-semibold">Note</h3>
               <p className="opacity-70 text-sm mt-1">
-                Taglie: S/M/L moltiplicano la quantità. Consegna fissa €4.90. Seleziona 2 frutti (o Stagionale) e aggiungi al carrello.
+                Taglie: S (2,5kg)/M (5kg)/L (8kg) moltiplicano la quantità scelta. Consegna fissa €4.90. Seleziona 2 frutti (o Stagionale) e aggiungi al carrello.
               </p>
             </div>
             <div id="carrello"><CartCheckout/></div>
