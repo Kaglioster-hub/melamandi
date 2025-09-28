@@ -21,7 +21,7 @@ body{
 .btn-primary{ @apply bg-gradient-to-r from-green-500 to-amber-500 text-black font-medium; }
 .card{ @apply rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-4; }
 
-.header{ @apply sticky top-0 z-40 backdrop-blur bg-[var(--bg)]/70 border-b border-[var(--border)]; }
+.header{ @apply sticky top-0 z-40 backdrop-blur  border-b border-[var(--border)];  background-color: rgba(11,15,14,.7); }
 .header-inner{ @apply container h-14 flex items-center justify-between; }
 .brand{ @apply font-semibold text-base tracking-tight; }
 a.nav{ @apply text-sm opacity-80 hover:opacity-100 px-3 py-1; }
