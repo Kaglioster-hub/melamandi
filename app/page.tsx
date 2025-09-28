@@ -43,7 +43,7 @@ export default function Page(){
         <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
           <div className="md:col-span-2 rounded-2xl p-4 border border-[var(--border)] bg-[var(--panel)]">
             <h3 className="text-lg font-semibold">Note</h3>
-            <p className="opacity-70 text-sm mt-1">Taglie: S/M/L moltiplicano la quantità. Consegna fissa {€4,90}. Seleziona 2 frutti (o Stagionale) e aggiungi al carrello.</p>
+            <p className="opacity-70 text-sm mt-1">Taglie: S/M/L moltiplicano la quantità. Consegna fissa €4,90. Seleziona 2 frutti (o Stagionale) e aggiungi al carrello.</p>
           </div>
           <CartCheckout />
         </section>
@@ -51,3 +51,4 @@ export default function Page(){
     </main>
   )
 }
+
