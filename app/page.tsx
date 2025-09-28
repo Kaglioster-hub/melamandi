@@ -30,21 +30,21 @@ export default function Page(){
           <ProductCard
             name="Base"
             listPrice={29}
-            image="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop"
+            image="https://tse4.mm.bing.net/th/id/OIP.BYMZEWZTB4eXmh9rsjKmcAHaEo?rs=1&pid=ImgDetMain&o=7&rm=3"
             description="Cesto essenziale: scegli 2 frutti a piacere o Stagionale."
             fruits={NORMAL}
           />
           <ProductCard
             name="Esotico"
             listPrice={49}
-            image="https://images.unsplash.com/photo-1516685304081-de7947d419d6?q=80&w=1200&auto=format&fit=crop"
+            image="https://tse4.mm.bing.net/th/id/OIP.BYMZEWZTB4eXmh9rsjKmcAHaEo?rs=1&pid=ImgDetMain&o=7&rm=3"
             description="Cesto esotico: mango, ananas, papaya (o Stagionale)."
             fruits={EXOTIC}
           />
           <ProductCard
             name="Deluxe"
             listPrice={69}
-            image="https://images.unsplash.com/photo-1576186726113-2f85d9a0c80d?q=80&w=1200&auto=format&fit=crop"
+            image="https://tse4.mm.bing.net/th/id/OIP.BYMZEWZTB4eXmh9rsjKmcAHaEo?rs=1&pid=ImgDetMain&o=7&rm=3"
             description="Cesto completo: selezione premium con scelta 2 frutti o Stagionale."
             fruits={MIX}
           />
