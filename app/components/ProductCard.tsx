@@ -1,9 +1,8 @@
 "use client";
-import { useMemo } from "react";
-import { priceMatrix } from "@/lib/pricing";
-import type { Kind } from "@/lib/pricing";
 import { useMemo, useState } from "react";
 import { useCart } from "./CartProvider";
+import { priceMatrix } from "@/lib/pricing";
+import type { Kind } from "@/lib/pricing";
 
 type Props = { name:string; listPrice:number; image:string; description:string; fruits:string[] };
 const SIZES:( "S"|"M"|"L")[] = ["S","M","L"];
