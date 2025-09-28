@@ -26,3 +26,4 @@ function ThemeToggle() {
 }
 export default ThemeToggle;
 export { ThemeToggle };
+export { ThemeToggle };
