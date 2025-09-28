@@ -1,4 +1,5 @@
 import "./globals.css";
+import OrderGate from "./components/OrderGate";
 import { ThemeProvider } from "next-themes";
 import ThemeToggle from "@/components/ThemeToggle";
 
