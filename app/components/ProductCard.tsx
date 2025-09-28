@@ -1,81 +1,56 @@
 "use client";
-import React, {useMemo, useState} from "react";
-import {useCart} from "./CartProvider";
+import { useMemo, useState } from "react";
+import { useCart } from "./CartProvider";
 
-type Size = "S"|"M"|"L";
-const MULT: Record<Size, number> = { S: 1, M: 1.5, L: 2 };
+type Props = { name:string; listPrice:number; image:string; description:string; fruits:string[] };
+const SIZES:( "S"|"M"|"L")[] = ["S","M","L"];
+const MULT:Record<"S"|"M"|"L",number> = { S:1, M:1.5, L:2 };
 
-export default function ProductCard(props:{
-  name: string;
-  listPrice: number;   // prezzo "pieno" – applichiamo -40%
-  image: string;
-  description: string;
-  fruits: string[];
-}){
-  const {add} = useCart();
-  const [size,setSize] = useState<Size>("M");
+export default function ProductCard({ name, listPrice, image, description, fruits }:Props){
+  const { add } = useCart();
+  const [size,setSize] = useState<"S"|"M"|"L">("M");
+  const [sel,setSel] = useState<string[]>([]);
   const [seasonal,setSeasonal] = useState(false);
-  const [selected,setSelected] = useState<string[]>([]);
 
-  const discounted = useMemo(()=> Math.round(props.listPrice * 60) / 100, [props.listPrice]); // -40%
-  const unitPrice = useMemo(()=> +(discounted * MULT[size]).toFixed(2), [discounted, size]);
+  const base = useMemo(()=> +(listPrice * 0.6).toFixed(2), [listPrice]);   // -40%
+  const price = useMemo(()=> +(base * MULT[size]).toFixed(2), [base,size]);
 
   function toggleFruit(f:string){
-    if (seasonal) return;
-    setSelected(prev=>{
-      if (prev.includes(f)) return prev.filter(x=>x!==f);
-      if (prev.length >= 2) return [prev[1], f];
+    if(seasonal) setSeasonal(false);
+    setSel(prev=>{
+      const has = prev.includes(f);
+      if(has) return prev.filter(x=>x!==f);
+      if(prev.length===2) return [prev[1], f];
       return [...prev, f];
     });
   }
-
-  function addToCart(){
-    add({
-      name: props.name,
-      size,
-      seasonal,
-      fruits: seasonal ? [] : selected.slice(0,2),
-      price: unitPrice
-    });
-  }
+  function onAdd(){ if(!seasonal && sel.length!==2) return; add({ name, size, fruits:sel, seasonal, price }); }
+  const valid = seasonal || sel.length===2;
 
   return (
-    <article className="product-card">
-      <figure className="thumb"><img src={props.image} alt={props.name} /></figure>
-      <header className="title">
-        <div className="name">{props.name}</div>
-        <div className="price">da € {unitPrice.toFixed(2)}</div>
-      </header>
-      <p className="desc">{props.description}</p>
+    <article className="card">
+      <img src={image} alt={name} className="w-full h-44 object-cover rounded-xl mb-3"/>
+      <div className="flex items-center justify-between">
+        <h3 className="font-semibold">{name}</h3>
+        <span className="text-sm opacity-70">da € {(base * MULT["S"]).toFixed(2)}</span>
+      </div>
+      <p className="text-sm opacity-70 mt-1">{description}</p>
 
-      <div className="sizes">
-        {(["S","M","L"] as Size[]).map(s => (
-          <button key={s} onClick={()=>setSize(s)} className={`chip ${size===s?"active":""}`}>{s}</button>
+      <div className="mt-3 flex gap-2">
+        {SIZES.map(s=>(
+          <button key={s} onClick={()=>setSize(s)} className={`pill ${size===s ? "ring-2 ring-green-500" : ""}`}>{s}</button>
         ))}
       </div>
 
-      <div className="fruit-grid">
-        {props.fruits.map(f => (
-          <button key={f}
-            className={`chip ${!seasonal && selected.includes(f) ? "active":""}`}
-            onClick={()=>toggleFruit(f)}
-            disabled={seasonal}
-            aria-pressed={!seasonal && selected.includes(f)}
-          >
-            {f}
-          </button>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {fruits.map(f=>(
+          <button key={f} onClick={()=>toggleFruit(f)} className={`pill ${sel.includes(f) ? "ring-2 ring-green-500" : ""}`}>{f}</button>
         ))}
-        <button
-          className={`chip ${seasonal?"active":""}`}
-          onClick={()=>{ setSeasonal(v=>!v); if (!seasonal) setSelected([]); }}
-          aria-pressed={seasonal}
-        >
-          Stagionale
-        </button>
+        <button onClick={()=>{ setSeasonal(!seasonal); setSel([]); }} className={`pill ${seasonal ? "ring-2 ring-green-500" : ""}`}>Stagionale</button>
       </div>
 
-      <button className="btn-primary" onClick={addToCart}>
-        Aggiungi al carrello • € {unitPrice.toFixed(2)}
+      <button onClick={onAdd} disabled={!valid} className="btn btn-primary w-full mt-4 disabled:opacity-50">
+        Aggiungi al carrello • € {price.toFixed(2)}
       </button>
     </article>
   );

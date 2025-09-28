@@ -2,97 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme tokens */
-:root{
-  --bg:#0b0b0b;
-  --fg:#f6f7f7;
-  --card:#111214;
-  --border:rgba(255,255,255,.08);
-}
+:root{ --bg:#0b0f0e; --fg:#eaf6ef; --panel:rgba(255,255,255,.045); --border:rgba(255,255,255,.12); }
+::selection{ background:rgba(34,197,94,.30); }
 
-.light {
-  --bg:#fafafa;
-  --fg:#0b0b0b;
-  --card:#ffffff;
-  --border:rgba(0,0,0,.08);
-}
-
-*{ box-sizing: border-box; }
-
-html, body{ height: 100%; }
-
+html,body{ height:100% }
 body{
-  @apply bg-[var(--bg)] text-[var(--fg)] antialiased selection:bg-brand-green/30 selection:text-[var(--bg)];
-  background-image: radial-gradient(1200px 400px at 10% 0%, rgba(139,92,246,.10), transparent),
-                    radial-gradient(1200px 400px at 90% 0%, rgba(245,158,11,.10), transparent);
+  @apply antialiased bg-[var(--bg)] text-[var(--fg)];
+  background-image:
+    radial-gradient(1200px 400px at 10% 0%, rgba(139,92,246,.10), transparent),
+    radial-gradient(1200px 400px at 90% 0%, rgba(245,158,11,.10), transparent);
 }
 
 .container{ @apply max-w-6xl mx-auto px-4; }
-.card{ @apply bg-[var(--card)] border border-[var(--border)] rounded-2xl shadow-soft; }
+.pill{ @apply px-3 py-1 rounded-full border border-[var(--border)] bg-[var(--panel)] text-sm transition; }
+.pill:focus-visible{ @apply outline-none ring-2 ring-green-500; }
+.btn{ @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 border border-[var(--border)] transition; }
+.btn:focus-visible{ @apply outline-none ring-2 ring-green-500; }
+.btn-primary{ @apply bg-gradient-to-r from-green-500 to-amber-500 text-black font-medium; }
+.card{ @apply rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-4; }
 
-.btn{ @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl border border-[var(--border)] transition outline-none; }
-.btn:focus-visible{ box-shadow: 0 0 0 3px rgba(34,197,94,.5); } /* focus contrast */
-.btn-primary{ @apply from-brand-green to-brand-orange bg-gradient-to-r text-[var(--bg)] hover:opacity-90; }
-.btn-ghost{ @apply hover:bg-white/5; }
-
-.badge{ @apply text-xs px-2.5 py-1 rounded-full border border-[var(--border)] bg-white/5; }
-
-label{ @apply text-sm; }
-
-input, select, textarea{
-  @apply w-full px-3.5 py-2.5 rounded-xl bg-black/80 text-white placeholder:text-white/50 border border-white/10 outline-none;
-}
-input:focus-visible, select:focus-visible, textarea:focus-visible{
-  @apply ring-2 ring-emerald-400 ring-offset-0;
-}
-.light input, .light select, .light textarea{
-  @apply bg-white text-black placeholder:text-black/40 border-black/10;
-}
-
-hr{ @apply border-[var(--border)]; }
-
-/* melamandi ui patch */
-.logo-wrap{display:flex;align-items:center;gap:.5rem}
-.logo-wrap img{height:28px;width:auto;border-radius:8px}
-.logo-wrap .brand{font-weight:700;letter-spacing:.2px}
-
-.card-slim .title{font-weight:700}
-.card-slim{max-width:300px}
-.card-slim .price{font-weight:600;opacity:.9}
-.card-slim .opts{display:flex;gap:.5rem;flex-wrap:wrap}
-.card-slim .opts .chip{padding:.35rem .6rem;border-radius:.75rem;border:1px solid var(--border,#e5e7eb)}
-.card-slim .cta{margin-top:.75rem}
-
-.checkout-sticky{position:sticky;top:1.25rem}
-
-/* === MelaMandi UI patch === */
-.container{ max-width: 1100px; margin: 0 auto; padding: 24px; }
-.site-header{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:18px; }
-.brand-wrap{ display:flex; align-items:center; gap:10px; }
-.brand-logo{ width:28px; height:28px; border-radius:8px; }
-.brand{ font-weight:700; font-size:18px; letter-spacing:.2px; }
-.nav a{ margin-left:14px; opacity:.8; }
-.nav a:hover{ opacity:1 }
-.hero{ text-align:center; margin:18px 0 26px }
-
-.product-card{ border:1px solid var(--border); background:var(--panel); border-radius:16px; padding:12px; max-width:300px }
-.product-card .thumb{ overflow:hidden; border-radius:12px; aspect-ratio: 4/3; background:#0002; }
-.product-card .thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
-.product-card .title{ display:flex; justify-content:space-between; align-items:center; margin:10px 0 6px; }
-.product-card .name{ font-weight:600 }
-.product-card .price{ font-weight:700 }
-.product-card .desc{ opacity:.75; font-size:.95rem; margin-bottom:8px }
-.sizes, .fruit-grid{ display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 }
-.chip{ padding:6px 10px; border:1px solid var(--border); border-radius:999px; background:transparent; }
-.chip.active{ background:#22c55e33; border-color:#22c55e88 }
-.btn-primary{ width:100%; padding:10px 12px; border-radius:12px; border:1px solid var(--border); }
-.checkout{ border:1px solid var(--border); background:var(--panel); border-radius:16px; padding:14px }
-.checkout .cart-list{ display:flex; flex-direction:column; gap:10px; margin:10px 0 }
-.checkout .cart-list li{ display:flex; justify-content:space-between; align-items:center; gap:10px }
-.checkout .line-name{ font-weight:600 }
-.checkout .line-sub{ opacity:.7; font-size:.9rem }
-.checkout .line-price{ font-weight:700 }
-.checkout .sum{ display:flex; flex-direction:column; gap:4px; margin:8px 0 }
-.checkout .sum .total{ font-weight:800 }
-.checkout .note{ width:100%; min-height:70px; margin:8px 0; border:1px solid var(--border); border-radius:12px; background:transparent; padding:8px }
-.muted{ opacity:.7 } .tiny{ font-size:.85rem }
+.header{ @apply sticky top-0 z-40 backdrop-blur bg-[var(--bg)]/70 border-b border-[var(--border)]; }
+.header-inner{ @apply container h-14 flex items-center justify-between; }
+.brand{ @apply font-semibold text-base tracking-tight; }
+a.nav{ @apply text-sm opacity-80 hover:opacity-100 px-3 py-1; }
