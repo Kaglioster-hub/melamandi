@@ -50,3 +50,17 @@ input:focus-visible, select:focus-visible, textarea:focus-visible{
 }
 
 hr{ @apply border-[var(--border)]; }
+
+/* melamandi ui patch */
+.logo-wrap{display:flex;align-items:center;gap:.5rem}
+.logo-wrap img{height:28px;width:auto;border-radius:8px}
+.logo-wrap .brand{font-weight:700;letter-spacing:.2px}
+
+.card-slim .title{font-weight:700}
+.card-slim{max-width:340px}
+.card-slim .price{font-weight:600;opacity:.9}
+.card-slim .opts{display:flex;gap:.5rem;flex-wrap:wrap}
+.card-slim .opts .chip{padding:.35rem .6rem;border-radius:.75rem;border:1px solid var(--border,#e5e7eb)}
+.card-slim .cta{margin-top:.75rem}
+
+.checkout-sticky{position:sticky;top:1.25rem}
