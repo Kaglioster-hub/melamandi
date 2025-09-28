@@ -6,7 +6,6 @@ type Mode = "light" | "dark" | "system";
 export default function ThemeToggle(){
   const [mode, setMode] = useState<Mode>("system");
 
-  // load saved
   useEffect(() => {
     const saved = (typeof window !== "undefined" && localStorage.getItem("mm-theme")) as Mode | null;
     if (saved) apply(saved);
@@ -15,7 +14,6 @@ export default function ThemeToggle(){
   function apply(next: Mode){
     setMode(next);
     const root = document.documentElement;
-    // clear override
     root.removeAttribute("data-theme");
     if (next === "dark") root.setAttribute("data-theme","dark");
     if (next === "light") root.setAttribute("data-theme","light");
@@ -26,7 +24,10 @@ export default function ThemeToggle(){
     apply(mode === "system" ? "dark" : mode === "dark" ? "light" : "system");
   }
 
-  const label = mode === "system" ? "Tema: Sistema" : mode === "dark" ? "Tema: Scuro" : "Tema: Chiaro";
+  const label =
+    mode === "system" ? "Tema: Sistema" :
+    mode === "dark"   ? "Tema: Scuro"   :
+                        "Tema: Chiaro";
 
   return (
     <button onClick={cycle} className="btn tap-target" title={label} aria-label={label}>
