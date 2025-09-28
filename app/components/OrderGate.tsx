@@ -1,28 +1,22 @@
 "use client";
 import { useEffect, useState } from "react";
 
-/** Finestra ordini attiva ogni giorno 18:00–22:00 (ora locale). */
-function isWithinWindow(d = new Date()) {
-  const m = d.getHours() * 60 + d.getMinutes();
-  return m >= 18*60 && m < 22*60; // 18:00 <= t < 22:00
+/** Finestra ordini attiva 18:00–22:00 ogni giorno (ora locale). */
+function isWithinWindow(d = new Date()){
+  const m = d.getHours()*60 + d.getMinutes();
+  return m >= 18*60 && m < 22*60;
 }
 
 export default function OrderGate(){
   const compute = () => !isWithinWindow();
   const [locked, setLocked] = useState<boolean>(compute);
 
-  // auto refresh ogni 15s (apre/chiude all'orario giusto)
-  useEffect(() => { const id = setInterval(()=>setLocked(compute()), 15000); return () => clearInterval(id); }, []);
+  // aggiorna ogni 15s per aprirsi/chiudersi da solo
+  useEffect(()=>{ const id = setInterval(()=>setLocked(compute()), 15000); return ()=>clearInterval(id); },[]);
+  // blocca scroll sotto overlay
+  useEffect(()=>{ if(!locked) return; const prev=document.body.style.overflow; document.body.style.overflow="hidden"; return ()=>{document.body.style.overflow=prev}; },[locked]);
 
-  // blocca lo scroll sotto overlay
-  useEffect(() => {
-    if(!locked) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = prev; };
-  }, [locked]);
-
-  if (!locked) return null;
+  if(!locked) return null;
 
   return (
     <div className="fixed inset-0 z-[100] pointer-events-auto">
@@ -34,11 +28,10 @@ export default function OrderGate(){
           <h2 className="text-xl font-semibold">Ordini non disponibili ora</h2>
           <p className="opacity-80 mt-2 text-sm">
             Il sito è attivo per gli ordini <b>tutti i giorni 18:00–22:00</b> (ora locale).
-            Gli ordini effettuati in quella fascia vengono consegnati
-            <b> il giorno successivo</b> nella fascia <b>14:00–18:00</b>.
+            Gli ordini effettuati in quella fascia vengono consegnati <b>il giorno successivo</b> nella fascia <b>14:00–18:00</b>.
           </p>
           <p className="opacity-70 mt-2 text-xs">
-            Torna tra le <b>18:00</b> e le <b>22:00</b> per ordinare. Il sito è visibile in sola consultazione.
+            Torna tra le <b>18:00</b> e le <b>22:00</b> per ordinare. Sotto vedi il sito in sola consultazione.
           </p>
         </article>
       </div>

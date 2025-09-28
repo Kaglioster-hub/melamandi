@@ -7,6 +7,18 @@ const SIZES:( "S"|"M"|"L")[] = ["S","M","L"];
 const MULT:Record<"S"|"M"|"L",number> = { S:1, M:1.5, L:2 };
 
 export default function ProductCard({ name, listPrice, image, description, fruits }:Props){
+  // @pricing-patched
+  const nameToKind = (n:string) => {
+    const s = (n||"").toLowerCase();
+    if (s.includes("esot")) return "mixExotic";
+    if (s.includes("deluxe")) return "deluxe";
+    return "base";
+  } as (n:string)=>keyof typeof priceMatrix;
+
+  const kind = nameToKind(name);
+  const priceS = priceMatrix[kind].S;
+  const priceM = priceMatrix[kind].M;
+  const priceL = priceMatrix[kind].L;
   const { add } = useCart();
   const [size,setSize] = useState<"S"|"M"|"L">("M");
   const [sel,setSel] = useState<string[]>([]);
@@ -32,7 +44,7 @@ export default function ProductCard({ name, listPrice, image, description, fruit
       <img src={image} alt={name} className="w-full h-44 object-cover rounded-xl mb-3"/>
       <div className="flex items-center justify-between">
         <h3 className="font-semibold">{name}</h3>
-        <span className="text-sm opacity-70">da € {(base * MULT["S"]).toFixed(2)}</span>
+        <span className="text-sm opacity-70">da € {priceS.toFixed(2)}</span>
       </div>
       <p className="text-sm opacity-70 mt-1">{description}</p>
 
