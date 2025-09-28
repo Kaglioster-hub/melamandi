@@ -8,12 +8,12 @@ const MULT:Record<"S"|"M"|"L",number> = { S:1, M:1.5, L:2 };
 
 export default function ProductCard({ name, listPrice, image, description, fruits }:Props){
   // @pricing-patched
-  const nameToKind = (n:string) => {
+  const nameToKind = (n: string): keyof typeof priceMatrix => {
     const s = (n||"").toLowerCase();
     if (s.includes("esot")) return "mixExotic";
     if (s.includes("deluxe")) return "deluxe";
     return "base";
-  } as (n:string)=>keyof typeof priceMatrix;
+  };
 
   const kind = nameToKind(name);
   const priceS = priceMatrix[kind].S;
