@@ -36,7 +36,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }){
               </div>
               <nav className="ml-auto flex items-center gap-2">
                 <a className="btn btn-ghost" href="#catalogo">Catalogo</a>
-                <a className="btn btn-ghost" href="#preventivo">Preventivo</a>
                 <a className="btn btn-ghost" href="#carrello">Carrello</a>
                 <ThemeToggle />
               </nav>
