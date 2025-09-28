@@ -1,4 +1,7 @@
 "use client";
+import { useMemo } from "react";
+import { priceMatrix } from "@/lib/pricing";
+import type { Kind } from "@/lib/pricing";
 import { useMemo, useState } from "react";
 import { useCart } from "./CartProvider";
 
@@ -8,7 +11,7 @@ const MULT:Record<"S"|"M"|"L",number> = { S:1, M:1.5, L:2 };
 
 export default function ProductCard({ name, listPrice, image, description, fruits }:Props){
   // @pricing-patched
-  const nameToKind = (n: string): keyof typeof priceMatrix => {
+  const nameToKind = (n: string): Kind => {
     const s = (n||"").toLowerCase();
     if (s.includes("esot")) return "mixExotic";
     if (s.includes("deluxe")) return "deluxe";
