@@ -1,15 +1,15 @@
 export type Size = 'S' | 'M' | 'L';
 export type Kind = 'base' | 'mix' | 'deluxe' | 'baseExotic' | 'mixExotic' | 'deluxeExotic';
 
-export const DELIVERY_FEE = 8.90;
+export const DELIVERY_FEE = 4.90;
 
 export const priceMatrix: Record<Kind, Record<Size, number>> = {
-  base:       { S: 19,  M: 29,  L: 39 },
-  mix:        { S: 29,  M: 39,  L: 49 },
-  deluxe:     { S: 39,  M: 55,  L: 70 },
-  baseExotic: { S: 24,  M: 34,  L: 44 },
-  mixExotic:  { S: 34,  M: 49,  L: 65 },
-  deluxeExotic:{ S: 49, M: 69,  L: 89 },
+  base:       { S: 12,  M: 22,  L: 30 },
+  mix:        { S: 14,  M: 24,  L: 32 },
+  deluxe:     { S: 18,  M: 27,  L: 38 },
+  baseExotic: { S: 16,  M: 26,  L: 34 },
+  mixExotic:  { S: 20,  M: 30,  L: 40 },
+  deluxeExotic:{ S: 24, M: 34,  L: 44 },
 };
 
 export const baseFruits = ['Mele','Pere','Banane','Arance','Stagionale'] as const;

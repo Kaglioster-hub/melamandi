@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }){
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-brand.green to-brand.purple text-[var(--bg)] font-bold">M</span>
                 <div className="leading-tight">
                   <div className="font-semibold text-lg">MelaMandi</div>
-                  <div className="text-xs opacity-60">Cesti di frutta • Roma Nord</div>
+                  <div className="text-xs opacity-60">Cesti di frutta • Roma Nord </div>
                 </div>
               </div>
               <nav className="ml-auto flex items-center gap-2">
@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }){
               <div>
                 <div className="font-semibold mb-2">Contatti</div>
                 <p><a href="mailto:melamandi@vrabo.it" className="underline">melamandi@vrabo.it</a></p>
-                <p><a href="https://wa.me/393805834799" className="underline">+39 380 583 4799</a></p>
+                <p><a href="https://wa.me/393805834799" className="underline">+39 3401587786</a></p>
               </div>
               <div>
                 <div className="font-semibold mb-2">Legali</div>

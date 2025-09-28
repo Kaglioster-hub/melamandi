@@ -1,19 +1,36 @@
-'use client';
-import { useTheme } from "next-themes";
-import { Sun, Moon } from "lucide-react";
+"use client";
+import { useEffect, useState } from "react";
 
-export function ThemeToggle(){
-  const { theme, setTheme } = useTheme();
-  const isLight = theme === 'light';
+type Mode = "light" | "dark" | "system";
+
+export default function ThemeToggle(){
+  const [mode, setMode] = useState<Mode>("system");
+
+  // load saved
+  useEffect(() => {
+    const saved = (typeof window !== "undefined" && localStorage.getItem("mm-theme")) as Mode | null;
+    if (saved) apply(saved);
+  }, []);
+
+  function apply(next: Mode){
+    setMode(next);
+    const root = document.documentElement;
+    // clear override
+    root.removeAttribute("data-theme");
+    if (next === "dark") root.setAttribute("data-theme","dark");
+    if (next === "light") root.setAttribute("data-theme","light");
+    localStorage.setItem("mm-theme", next);
+  }
+
+  function cycle(){
+    apply(mode === "system" ? "dark" : mode === "dark" ? "light" : "system");
+  }
+
+  const label = mode === "system" ? "Tema: Sistema" : mode === "dark" ? "Tema: Scuro" : "Tema: Chiaro";
+
   return (
-    <button
-      className="btn btn-ghost"
-      onClick={()=> setTheme(isLight ? 'dark' : 'light')}
-      aria-label="Tema"
-      title="Cambia tema"
-    >
-      {isLight ? <Moon size={18}/> : <Sun size={18}/>}
-      <span className="text-sm">{isLight ? 'Dark' : 'Light'}</span>
+    <button onClick={cycle} className="btn tap-target" title={label} aria-label={label}>
+      {label}
     </button>
   );
 }
