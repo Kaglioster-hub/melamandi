@@ -24,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }){
     <html lang="it" suppressHydrationWarning>
       <body>
         <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
+          <OrderGate />
           <header className="border-b border-[var(--border)] sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-black/40 light:supports-[backdrop-filter]:bg-white/60">
             <div className="container flex items-center gap-4 py-3">
               <div className="flex items-center gap-2">

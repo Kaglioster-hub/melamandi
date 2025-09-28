@@ -14,7 +14,6 @@ export default function Page(){
           </div>
           <nav className="flex items-center gap-1">
             <a href="#catalogo" className="nav">Catalogo</a>
-            <a href="#preventivo" className="nav">Preventivo</a>
             <a href="#carrello" className="nav">Carrello</a>
           </nav>
         </div>
@@ -23,10 +22,10 @@ export default function Page(){
       <div className="container py-8">
         <section className="text-center mb-6">
           <div className="mx-auto inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--border)] bg-[var(--panel)] text-sm">
-            Cesti di frutta rivisitati. Consegna Roma Nord.
+            Cesti di frutta fresca. Consegna Roma Nord (nelle zone coperte dal servizio).
           </div>
           <h1 className="sr-only">MelaMandi</h1>
-          <p className="opacity-80 mt-3">Scegli tu due frutti o seleziona “Stagionale” per avere il tuo cesto.</p>
+          <p className="opacity-80 mt-3 text-balance">Ordini attivi ogni giorno <b>18:00–22:00</b>. Gli ordini effettuati in quella fascia vengono consegnati <b>il giorno successivo</b> tra <b>14:00–18:00</b>. Fuori orario il sito è in sola consultazione.</p>
         </section>
 
         <CartProvider>
@@ -58,7 +57,7 @@ export default function Page(){
             <div className="card">
               <h3 className="text-lg font-semibold">Note</h3>
               <p className="opacity-70 text-sm mt-1">
-                Taglie: S (2,5kg)/M (5kg)/L (8kg) moltiplicano la quantità scelta. Consegna fissa €4,90 **solo nelle zone servite**. Seleziona 2 frutti (o Stagionale) e aggiungi al carrello.
+                ATTENZIONE: Le taglie dei cesti "S" (Small - 2,5kg)/ "M" (Medium - 5kg)/ "L" (Large - 8kg) moltiplicano la quantità scelta. Consegna fissa €4,90 **solo nelle zone servite**. Seleziona 2 frutti (o Stagionale) e aggiungi al carrello.
               </p>
             </div>
             <div id="carrello"><CartCheckout/></div>
