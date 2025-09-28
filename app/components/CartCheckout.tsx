@@ -1,73 +1,57 @@
-'use client';
-import React, {useState} from 'react';
-import {useCart, DELIVERY} from './CartProvider';
-import {euro} from './ProductCard';
+"use client";
+import React, {useState} from "react";
+import {useCart, DELIVERY_FEE} from "./CartProvider";
 
 export default function CartCheckout(){
-  const {items, subtotal, delivery, total, remove, clear} = useCart();
-  const [pay, setPay] = useState<'card'|'paypal'|'crypto'>('paypal');
+  const {items, remove, clear, subtotal, delivery, total} = useCart();
+  const [note, setNote] = useState("");
 
   async function confirm(){
-    // Tentativo POST API (se esiste).
     try{
-      const res = await fetch('/api/checkout', {
-        method:'POST',
-        headers:{'content-type':'application/json'},
-        body: JSON.stringify({pay, items})
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {"content-type":"application/json"},
+        body: JSON.stringify({items, note, subtotal, delivery, total})
       });
       if (res.ok){
         const data = await res.json().catch(()=> ({}));
         if (data?.url) { location.href = data.url; return; }
-        alert('Ordine inviato! Grazie 🙌');
-        clear();
-        return;
       }
-    }catch{}
-    alert('Ordine registrato localmente (demo). Sorgente carrello ok.');
+      alert("Ordine registrato (demo). Totale € " + total.toFixed(2));
+      clear();
+    }catch{
+      alert("Ordine registrato localmente. Totale € " + total.toFixed(2));
+      clear();
+    }
   }
 
   return (
-    <div className="checkout-sticky rounded-2xl p-4 border border-[var(--border)] bg-[var(--panel)]">
-      <div className="text-lg font-semibold mb-3">Checkout</div>
-
-      <div className="text-sm mb-2">Carrello</div>
-      {items.length===0 && <div className="text-sm opacity-60">Nessun articolo nel carrello.</div>}
-      {items.length>0 && (
-        <ul className="space-y-2 mb-3">
-          {items.map(it=>(
-            <li key={it.id} className="flex items-start gap-2">
-              <div className="text-sm flex-1">
-                <div className="font-medium">{it.name} • {it.size} × {it.qty}</div>
-                <div className="opacity-70 text-xs">{it.fruits.join(', ')}</div>
-              </div>
-              <div className="text-sm">{euro(it.unit*it.qty)}</div>
-              <button onClick={()=>remove(it.id)} className="text-xs opacity-70 hover:opacity-100 underline">rimuovi</button>
-            </li>
-          ))}
-        </ul>
+    <aside className="checkout">
+      <h3>Checkout</h3>
+      {items.length===0 ? <p className="muted">Nessun articolo nel carrello.</p> : (
+        <>
+          <ul className="cart-list">
+            {items.map(it=>(
+              <li key={it.id}>
+                <div>
+                  <div className="line-name">{it.name} {it.size}</div>
+                  <div className="line-sub">{it.seasonal ? "Stagionale" : it.fruits.join(" + ")}</div>
+                </div>
+                <div className="line-price">€ {(it.price*it.qty).toFixed(2)}</div>
+                <button className="chip" onClick={()=>remove(it.id)} aria-label="Rimuovi">×</button>
+              </li>
+            ))}
+          </ul>
+          <div className="sum">
+            <div><span>Subtotale</span><span>€ {subtotal.toFixed(2)}</span></div>
+            <div><span>Consegna</span><span>€ {delivery.toFixed(2)}</span></div>
+            <div className="total"><span>Totale</span><span>€ {total.toFixed(2)}</span></div>
+          </div>
+          <textarea className="note" placeholder="Note per il corriere (opzionale)" value={note} onChange={e=>setNote(e.target.value)} />
+          <button className="btn-primary" onClick={confirm}>Conferma ordine</button>
+          <p className="muted tiny">Consegna fissa €{DELIVERY_FEE.toFixed(2)}. Pagamenti reali (Stripe/PayPal) attivabili appena fornite le chiavi.</p>
+        </>
       )}
-
-      <div className="border-t border-[var(--border)] my-3"></div>
-      <div className="text-sm space-y-1">
-        <div className="flex justify-between"><span>Subtotale</span><span>{euro(subtotal)}</span></div>
-        <div className="flex justify-between"><span>Consegna</span><span>{items.length? euro(DELIVERY): euro(0)}</span></div>
-        <div className="flex justify-between font-semibold"><span>Totale</span><span>{euro(total)}</span></div>
-      </div>
-
-      <div className="mt-3 text-sm">
-        <div className="mb-1">Pagamento</div>
-        <div className="flex gap-3">
-          <label className="flex items-center gap-1"><input type="radio" checked={pay==='card'} onChange={()=>setPay('card')}/> Carta</label>
-          <label className="flex items-center gap-1"><input type="radio" checked={pay==='paypal'} onChange={()=>setPay('paypal')}/> PayPal</label>
-          <label className="flex items-center gap-1"><input type="radio" checked={pay==='crypto'} onChange={()=>setPay('crypto')}/> Crypto</label>
-        </div>
-      </div>
-
-      <button disabled={items.length===0}
-        onClick={confirm}
-        className="mt-4 w-full btn btn-primary bg-gradient-to-r from-brand-green to-brand-orange rounded-xl px-4 py-2 disabled:opacity-50">
-        Conferma ordine
-      </button>
-    </div>
+    </aside>
   );
 }
