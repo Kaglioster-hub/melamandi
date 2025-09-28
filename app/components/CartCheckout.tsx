@@ -12,10 +12,10 @@ const ALLOWED_TOWNS = [
   "settebagni"
 ];
 
-const COUPONS: Record<string, {percent?:number; fixed?:number; freeship?:boolean}> = {
+const COUPONS: Record<string, {percent?:number; fixed?:number; FREESHIP_DISABLED?:boolean}> = {
   BENVENUTO10: { percent: 10 },
   MELA5: { fixed: 5 },
-  FREESHIP: { freeship: true }
+  FREESHIP_DISABLED: { FREESHIP_DISABLED: true }
 };
 
 const norm = (s:string) => (s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim();
@@ -50,7 +50,7 @@ export default function CartCheckout(){
   const [method, setMethod] = useState<Method>("card");
   const [hasCoupon, setHasCoupon] = useState(false);
   const [coupon, setCoupon]       = useState("");
-  const [applied, setApplied]     = useState<{code:string; percent?:number; fixed?:number; freeship?:boolean} | null>(null);
+  const [applied, setApplied]     = useState<{code:string; percent?:number; fixed?:number; FREESHIP_DISABLED?:boolean} | null>(null);
   const [note, setNote]           = useState("");
 
   useEffect(()=>{ try{ const n=localStorage.getItem("mm-note"); if(n) setNote(n) }catch{} },[]);
@@ -93,7 +93,7 @@ export default function CartCheckout(){
   const delivery = useMemo(()=>{
     if(!items.length) return 0;
     if(!covered) return 0;
-    return applied?.freeship ? 0 : 4.9;
+    return applied?.FREESHIP_DISABLED ? 0 : 4.9;
   },[applied, covered, items.length]);
 
   const total = useMemo(()=> +(Math.max(0, subtotal - discount) + delivery).toFixed(2), [subtotal, discount, delivery]);
@@ -260,7 +260,7 @@ export default function CartCheckout(){
           </button>
 
           <p className="text-xs opacity-60">
-            Consegna €4,90 (gratis con FREESHIP). Copertura: Riano, Monterotondo, Morlupo, Castelnuovo (di Porto),
+            Consegna €4,90 . Copertura: Riano, Monterotondo, Morlupo, Castelnuovo (di Porto),
             Ponte Storto, Settebagni, Roma 00188–00189.
           </p>
           <button className="text-xs opacity-60 hover:opacity-100" onClick={clear}>Svuota carrello</button>
