@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-/** Finestra ordini attiva 18:00–22:00 ogni giorno (ora locale). */
+/** Finestra ordini attiva 18:00–22:00 (ora locale). */
 function isWithinWindow(d = new Date()){
   const m = d.getHours()*60 + d.getMinutes();
   return m >= 18*60 && m < 22*60;
@@ -11,9 +11,7 @@ export default function OrderGate(){
   const compute = () => !isWithinWindow();
   const [locked, setLocked] = useState<boolean>(compute);
 
-  // aggiorna ogni 15s per aprirsi/chiudersi da solo
   useEffect(()=>{ const id = setInterval(()=>setLocked(compute()), 15000); return ()=>clearInterval(id); },[]);
-  // blocca scroll sotto overlay
   useEffect(()=>{ if(!locked) return; const prev=document.body.style.overflow; document.body.style.overflow="hidden"; return ()=>{document.body.style.overflow=prev}; },[locked]);
 
   if(!locked) return null;
